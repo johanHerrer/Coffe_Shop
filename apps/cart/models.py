@@ -9,12 +9,33 @@ class CartItem(EmbeddedDocument):
 
     quantity = IntField(default=1)
 
+    subtotal = FloatField(default=0)
+
+    def calculate_subtotal(self):
+        self.subtotal = (
+            self.product.price * self.quantity
+        )
+
 class Cart(BaseDocument):
 
-    user = ReferenceField(User)
+    user_id = StringField(required=True)
 
     items = EmbeddedDocumentListField(CartItem)
 
+    total = FloatField(default=0)
+
     meta = {
-        'collection': 'carts'
+        "collection": "carts"
     }
+
+    def calculate_total(self):
+
+        total = 0
+
+        for item in self.items:
+
+            item.calculate_subtotal()
+
+            total += item.subtotal
+
+        self.total = total

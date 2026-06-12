@@ -30,8 +30,10 @@ urlpatterns = [
     ), name='home'),
     path(
     'products/',
-    include('apps.products.urls')
-),
+    include('apps.products.urls')),
+    path(
+    'cart/',
+    include('apps.cart.urls')),
 ]
 
 urlpatterns += static(

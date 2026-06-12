@@ -1,0 +1,20 @@
+from django.shortcuts import render
+from .models import Cart
+
+def cart_view(request):
+
+    user_id = request.session.get(
+        'user_id'
+    )
+
+    cart = Cart.objects(
+        user_id=user_id
+    ).first()
+
+    return render(
+        request,
+        'cart/cart.html',
+        {
+            'cart': cart
+        }
+    )
