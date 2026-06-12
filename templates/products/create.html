@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="py-32 px-6">
+
+    <div
+    class="max-w-3xl mx-auto bg-white dark:bg-[#1E1E1E] rounded-3xl shadow-2xl p-10">
+
+        <h1 class="text-4xl font-bold mb-10">
+
+            Crear Producto
+
+        </h1>
+
+        <form
+        method="POST"
+        enctype="multipart/form-data"
+        class="space-y-6">
+
+            {% csrf_token %}
+
+            <input
+            type="text"
+            name="name"
+            placeholder="Nombre"
+            class="w-full p-4 rounded-2xl border dark:bg-[#121212]">
+
+            <textarea
+            name="description"
+            placeholder="Descripción"
+            class="w-full p-4 rounded-2xl border dark:bg-[#121212]"></textarea>
+
+            <input
+            type="number"
+            step="0.01"
+            name="price"
+            placeholder="Precio"
+            class="w-full p-4 rounded-2xl border dark:bg-[#121212]">
+
+            <input
+            type="number"
+            name="stock"
+            placeholder="Stock"
+            class="w-full p-4 rounded-2xl border dark:bg-[#121212]">
+
+            <input
+            type="file"
+            name="image"
+            class="w-full p-4 rounded-2xl border">
+
+            <label class="flex items-center gap-4">
+
+                <input type="checkbox" name="featured">
+
+                Producto destacado
+
+            </label>
+
+            <button
+            class="w-full bg-[#6F4E37] text-white py-5 rounded-2xl hover:scale-105 transition">
+
+                Guardar Producto
+
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Coffee Shop
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section
+class="min-h-screen flex items-center justify-center relative overflow-hidden">
+
+    <!-- BACKGROUND -->
+    <div
+    class="absolute inset-0 bg-gradient-to-br from-[#F8F5F2] to-[#E7D7C9] dark:from-[#121212] dark:to-[#1E1E1E]">
+    </div>
+
+    <!-- CONTENT -->
+    <div
+    class="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+
+        <!-- LEFT -->
+        <div data-aos="fade-right">
+
+            <span
+            class="bg-[#C4A484]/20 text-[#6F4E37] px-4 py-2 rounded-full text-sm">
+
+                Café Premium
+
+            </span>
+
+            <h1
+            class="text-6xl lg:text-7xl font-bold mt-6 leading-tight">
+
+                El mejor café
+                <span class="text-[#6F4E37]">
+                    artesanal
+                </span>
+
+            </h1>
+
+            <p
+            class="text-lg mt-6 text-gray-600 dark:text-gray-300 leading-relaxed">
+
+                Experiencia premium, sabores únicos y ambiente moderno.
+
+            </p>
+
+            <div class="flex gap-4 mt-10">
+
+                <button
+                class="bg-[#6F4E37] hover:bg-[#5d3f2c] text-white px-8 py-4 rounded-2xl transition duration-300 shadow-lg hover:scale-105">
+
+                    Ordenar Ahora
+
+                </button>
+
+                <button
+                class="border border-[#6F4E37] px-8 py-4 rounded-2xl hover:bg-[#6F4E37] hover:text-white transition duration-300">
+
+                    Ver Menú
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT -->
+        <div
+        class="relative flex justify-center"
+        data-aos="fade-left">
+
+            <img
+            id="coffee-image"
+            src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085"
+            class="rounded-[40px] shadow-2xl w-full max-w-lg object-cover">
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FEATURES -->
+<section class="py-24">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="grid md:grid-cols-3 gap-8">
+
+            <!-- CARD -->
+            <div
+            data-aos="zoom-in"
+            class="bg-white dark:bg-[#1E1E1E] rounded-3xl p-10 shadow-lg hover:shadow-2xl transition duration-500 hover:-translate-y-2">
+
+                <div class="text-5xl mb-6">
+                    ☕
+                </div>
+
+                <h3 class="text-2xl font-bold mb-4">
+                    Café Premium
+                </h3>
+
+                <p class="text-gray-600 dark:text-gray-400">
+                    Selección exclusiva de granos artesanales.
+                </p>
+
+            </div>
+
+            <!-- CARD -->
+            <div
+            data-aos="zoom-in"
+            data-aos-delay="200"
+            class="bg-white dark:bg-[#1E1E1E] rounded-3xl p-10 shadow-lg hover:shadow-2xl transition duration-500 hover:-translate-y-2">
+
+                <div class="text-5xl mb-6">
+                    🚀
+                </div>
+
+                <h3 class="text-2xl font-bold mb-4">
+                    Entrega Rápida
+                </h3>
+
+                <p class="text-gray-600 dark:text-gray-400">
+                    Pedidos online modernos y rápidos.
+                </p>
+
+            </div>
+
+            <!-- CARD -->
+            <div
+            data-aos="zoom-in"
+            data-aos-delay="400"
+            class="bg-white dark:bg-[#1E1E1E] rounded-3xl p-10 shadow-lg hover:shadow-2xl transition duration-500 hover:-translate-y-2">
+
+                <div class="text-5xl mb-6">
+                    🌱
+                </div>
+
+                <h3 class="text-2xl font-bold mb-4">
+                    Ingredientes Naturales
+                </h3>
+
+                <p class="text-gray-600 dark:text-gray-400">
+                    Calidad premium y sabor auténtico.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- GSAP -->
+<script>
+
+    gsap.from("#coffee-image", {
+        y: -30,
+        duration: 2,
+        repeat: -1,
+        yoyo: true,
+        ease: "power1.inOut"
+    });
+
+</script>
+
+{% endblock %}

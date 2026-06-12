@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section
+class="min-h-screen flex items-center justify-center px-6">
+
+    <div
+    class="w-full max-w-md bg-white dark:bg-[#1E1E1E] rounded-3xl shadow-2xl p-10">
+
+        <h1
+        class="text-4xl font-bold mb-8 text-center">
+
+            Crear Cuenta
+        </h1>
+
+        <form method="POST" class="space-y-6">
+
+            {% csrf_token %}
+
+            <div>
+
+                <label class="block mb-2">
+                    Nombre
+                </label>
+
+                <input
+                type="text"
+                name="full_name"
+                class="w-full p-4 rounded-2xl border dark:bg-[#121212]">
+
+            </div>
+
+            <div>
+
+                <label class="block mb-2">
+                    Correo
+                </label>
+
+                <input
+                type="email"
+                name="email"
+                class="w-full p-4 rounded-2xl border dark:bg-[#121212]">
+
+            </div>
+
+            <div>
+
+                <label class="block mb-2">
+                    Contraseña
+                </label>
+
+                <input
+                type="password"
+                name="password"
+                class="w-full p-4 rounded-2xl border dark:bg-[#121212]">
+
+            </div>
+
+            <button
+            class="w-full bg-[#6F4E37] text-white py-4 rounded-2xl hover:scale-105 transition">
+
+                Registrarse
+
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

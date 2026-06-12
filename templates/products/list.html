@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="py-32 px-6">
+
+    <div class="max-w-7xl mx-auto">
+
+        <!-- HEADER -->
+        <div class="flex justify-between items-center mb-12">
+
+            <div>
+
+                <h1 class="text-5xl font-bold">
+                    Productos
+                </h1>
+
+                <p class="text-gray-500 mt-3">
+                    Administración profesional de productos
+                </p>
+
+            </div>
+
+            <a
+            href="{% url 'create_product' %}"
+            class="bg-[#6F4E37] text-white px-6 py-4 rounded-2xl hover:scale-105 transition">
+
+                Nuevo Producto
+
+            </a>
+
+        </div>
+
+        <!-- SEARCH -->
+        <form class="mb-10">
+
+            <input
+            type="text"
+            name="search"
+            placeholder="Buscar productos..."
+            class="w-full p-5 rounded-2xl border dark:bg-[#1E1E1E]">
+
+        </form>
+
+        <!-- GRID -->
+        <div
+        class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            {% for product in products %}
+
+                {% include 'products/components/product_card.html' %}
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
