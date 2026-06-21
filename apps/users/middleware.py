@@ -1,4 +1,5 @@
 from django.shortcuts import redirect
+from apps.users.models import User
 
 class AuthRequiredMiddleware:
 
@@ -7,17 +8,24 @@ class AuthRequiredMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-
         protected_routes = [
-            '/dashboard/',
+            '/dashboard/'
         ]
 
-        if request.path in protected_routes:
+        if request.path.startswith('/dashboard/'):
+            user_id = request.session.get(
+                'user_id'
+            )
 
-            if not request.session.get('user_id'):
-
+            if not user_id:
                 return redirect('login')
 
-        response = self.get_response(request)
+            user = User.objects(
+                id=user_id
+            ).first()
 
+            if not user.role or user.role.name != "admin":
+                return redirect('home')
+
+        response = self.get_response(request)
         return response

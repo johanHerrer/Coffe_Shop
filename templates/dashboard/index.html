@@ -1,13 +1,149 @@
-{% extends 'base.html' %}
+{% extends 'dashboard/base_dashboard.html' %}
 
-{% block content %}
 
-<section class="p-10">
 
-    <h1 class="text-5xl font-bold">
-        Dashboard Admin
-    </h1>
+{% block dashboard_content %}
 
-</section>
+
+
+<h1
+class="
+text-5xl
+font-bold
+mb-12
+">
+
+Dashboard
+
+</h1>
+
+
+
+
+<div
+class="
+grid
+md:grid-cols-3
+gap-8
+">
+
+
+
+<!-- CARD -->
+
+<div
+class="
+bg-white
+dark:bg-[#1E1E1E]
+rounded-3xl
+p-8
+shadow-lg
+"
+data-aos="fade-up">
+
+
+<p class="text-gray-500">
+
+Productos
+
+</p>
+
+
+<h2
+class="
+text-5xl
+font-bold
+mt-3
+">
+
+{{products}}
+
+</h2>
+
+
+</div>
+
+
+
+
+
+
+<div
+class="
+bg-white
+dark:bg-[#1E1E1E]
+rounded-3xl
+p-8
+shadow-lg
+"
+data-aos="fade-up"
+data-aos-delay="200">
+
+
+<p class="text-gray-500">
+
+Pedidos
+
+</p>
+
+
+<h2
+class="
+text-5xl
+font-bold
+mt-3
+">
+
+{{orders}}
+
+</h2>
+
+
+</div>
+
+
+
+
+
+<div
+class="
+bg-white
+dark:bg-[#1E1E1E]
+rounded-3xl
+p-8
+shadow-lg
+"
+data-aos="fade-up"
+data-aos-delay="400">
+
+
+<p class="text-gray-500">
+
+Ventas
+
+</p>
+
+
+<h2
+class="
+text-5xl
+font-bold
+mt-3
+">
+
+${{sales}}
+
+</h2>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
 
 {% endblock %}

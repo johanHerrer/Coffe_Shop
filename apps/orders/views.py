@@ -1,9 +1,6 @@
 from django.shortcuts import render, redirect
-
 from .forms import CheckoutForm
-
 from .services import OrderService
-
 from .models import Order
 
 
@@ -37,8 +34,6 @@ def checkout(request):
     )
 
 
-
-
 def order_detail(request, id):
     order = Order.objects(id=id).first()
 
@@ -50,5 +45,16 @@ def order_detail(request, id):
         "orders/detail.html",
         {
             "order": order
+        }
+    )
+
+def dashboard_orders(request):
+    orders = Order.objects
+
+    return render(
+        request,
+        "dashboard/orders.html",
+        {
+            "orders":orders
         }
     )

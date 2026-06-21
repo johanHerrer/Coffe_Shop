@@ -1,0 +1,76 @@
+{% extends 'dashboard/base_dashboard.html' %}
+
+
+{% block dashboard_content %}
+
+
+<h1 class="text-4xl font-bold mb-10">
+
+    Pedidos
+
+</h1>
+
+
+
+<div class="space-y-6">
+
+
+    {% for order in orders %}
+
+
+    <div class="
+bg-white
+dark:bg-[#1E1E1E]
+p-8
+rounded-3xl
+shadow
+flex
+justify-between
+">
+
+
+        <div>
+
+
+            <h2 class="text-xl font-bold">
+
+                Pedido #{{order.id}}
+
+            </h2>
+
+
+            <p>
+
+                Estado:
+
+                {{order.status}}
+
+            </p>
+
+
+        </div>
+
+
+
+        <div>
+
+
+            ${{order.total}}
+
+
+        </div>
+
+
+    </div>
+
+
+
+    {% endfor %}
+
+
+
+</div>
+
+
+
+{% endblock %}

@@ -33,6 +33,16 @@
                     Contacto
                 </a>
 
+                {% if request.session.user_id %}
+
+                <a href="{% url 'dashboard' %}" class="hover:text-[#C4A484]">
+
+                    Dashboard
+
+                </a>
+
+                {% endif %}
+
             </div>
 
             <!-- RIGHT -->

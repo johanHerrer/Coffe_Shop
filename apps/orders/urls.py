@@ -26,6 +26,16 @@ urlpatterns=[
 
         name="order_detail"
 
-    )
+    ),
+
+    path(
+        
+        'dashboard/',
+        
+        dashboard_orders,
+        
+        name='dashboard_orders'
+        
+    ),
 
 ]

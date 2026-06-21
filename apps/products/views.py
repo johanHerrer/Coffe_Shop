@@ -62,3 +62,23 @@ def delete_product(request, product_id):
         product.delete()
 
     return redirect('products')
+
+def dashboard_products(request):
+
+
+    products = Product.objects
+
+
+    return render(
+
+        request,
+
+        "dashboard/products.html",
+
+        {
+
+            "products":products
+
+        }
+
+    )

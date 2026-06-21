@@ -20,4 +20,10 @@ urlpatterns = [
         delete_product,
         name='delete_product'
     ),
+
+    path(
+        'dashboard/',
+        dashboard_products,
+        name='dashboard_products'
+    ),
 ]
