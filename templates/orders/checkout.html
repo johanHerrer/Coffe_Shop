@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+
+
+<section class="py-32 px-6">
+
+
+
+    <div class="max-w-xl mx-auto bg-white dark:bg-[#1E1E1E] rounded-3xl shadow-xl p-10">
+
+
+
+        <h1 class="text-4xl font-bold mb-8">
+
+            Finalizar compra
+
+        </h1>
+
+
+
+
+        <form method="POST">
+
+
+            {% csrf_token %}
+
+
+
+            <textarea name="address" placeholder="Dirección de entrega"
+                class="w-full p-5 rounded-2xl border dark:bg-black"></textarea>
+
+
+
+            <button class="mt-6 w-full bg-[#6F4E37] text-white py-4 rounded-2xl hover:scale-105 transition">
+
+                Confirmar pedido
+
+            </button>
+
+
+
+        </form>
+
+
+
+    </div>
+
+
+
+</section>
+
+
+
+{% endblock %}

@@ -44,22 +44,13 @@ class="bg-white dark:bg-[#1E1E1E] rounded-3xl overflow-hidden shadow-lg hover:sh
 
             <div class="flex gap-2">
 
-                <button
-                class="bg-[#6F4E37] text-white px-4 py-2 rounded-xl hover:scale-105 transition">
+                    <a
+                    href="{% url 'add_to_cart' product.id %}"
+                    class="bg-[#6F4E37] text-white px-4 py-2 rounded-xl hover:scale-105 transition">
 
-                    Comprar
+                        Agregar
 
-                </button>
-
-                <a
-                href="{% url 'delete_product' product.id %}"
-                class="bg-red-500 text-white px-4 py-2 rounded-xl">
-
-                    Eliminar
-
-                </a>
-
-            </div>
+                    </a>
 
         </div>
 

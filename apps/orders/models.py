@@ -7,29 +7,64 @@ class OrderItem(EmbeddedDocument):
 
     product = ReferenceField(Product)
 
-    quantity = IntField()
+    quantity = IntField(default=1)
 
     price = FloatField()
 
+
+    @property
+    def subtotal(self):
+        return self.quantity * self.price
+
+
 class Order(BaseDocument):
 
-    STATUS_CHOICES = (
-        ('pending', 'Pendiente'),
-        ('preparing', 'Preparando'),
-        ('delivered', 'Entregado'),
+
+    STATUS = (
+
+        "Pendiente",
+        "Preparando",
+        "En camino",
+        "Entregado",
+        "Cancelado"
+
     )
 
-    user = ReferenceField(User)
 
-    items = EmbeddedDocumentListField(OrderItem)
+    user_id = StringField(required=True)
 
-    total = FloatField()
+
+    items = EmbeddedDocumentListField(
+        OrderItem
+    )
+
+
+    total = FloatField(
+        default=0
+    )
+
 
     status = StringField(
-        choices=STATUS_CHOICES,
-        default='pending'
+        default="Pendiente"
     )
 
-    meta = {
-        'collection': 'orders'
-    }
+
+    payment_status = StringField(
+        default="Pendiente"
+    )
+
+
+    address = StringField()
+
+
+
+    def calculate_total(self):
+
+        total = 0
+
+        for item in self.items:
+
+            total += item.subtotal()
+
+
+        self.total = total

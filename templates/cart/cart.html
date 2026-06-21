@@ -1,20 +1,78 @@
-from django.shortcuts import render
-from .models import Cart
+{% extends 'base.html' %}
 
-def cart_view(request):
+{% block content %}
 
-    user_id = request.session.get(
-        'user_id'
-    )
+<section class="py-32 px-6">
+    <div class="max-w-6xl mx-auto">
+        <div class="flex flex-col md:flex-row items-start justify-between gap-6 mb-10">
+            <div>
+                <h1 class="text-5xl font-bold">Tu carrito</h1>
+                <p class="text-gray-500 mt-3">Revisa tus productos antes de finalizar tu pedido.</p>
+            </div>
+            <a href="{% url 'products' %}" class="bg-[#6F4E37] text-white px-6 py-3 rounded-2xl hover:scale-105 transition">
+                Seguir comprando
+            </a>
+        </div>
 
-    cart = Cart.objects(
-        user_id=user_id
-    ).first()
+        {% if cart and cart.items %}
+            <div class="grid lg:grid-cols-[1.8fr_0.8fr] gap-8">
+                <div class="bg-white dark:bg-[#1E1E1E] rounded-3xl shadow p-8">
+                    <div class="grid grid-cols-12 gap-4 text-sm font-semibold text-gray-600 dark:text-gray-300 mb-6">
+                        <div class="col-span-5">Producto</div>
+                        <div class="col-span-2 text-center">Precio</div>
+                        <div class="col-span-3 text-center">Cantidad</div>
+                        <div class="col-span-2 text-center">Subtotal</div>
+                        <div class="col-span-0"></div>
+                    </div>
 
-    return render(
-        request,
-        'cart/cart.html',
-        {
-            'cart': cart
-        }
-    )
+                    {% for item in cart.items %}
+                        <div class="grid grid-cols-12 gap-4 items-center py-6 border-t border-gray-200 dark:border-gray-800">
+                            <div class="col-span-5 flex items-center gap-4">
+                                <img src="/media/{{ item.product.image }}" alt="{{ item.product.name }}" class="w-24 h-24 object-cover rounded-3xl" />
+                                <div>
+                                    <h2 class="text-xl font-semibold">{{ item.product.name }}</h2>
+                                    <p class="text-gray-500 dark:text-gray-400 text-sm mt-2">{{ item.product.description|truncatechars:80 }}</p>
+                                </div>
+                            </div>
+                            <div class="col-span-2 text-center">${{ item.product.price }}</div>
+                            <div class="col-span-3 text-center">
+                                <div class="inline-flex items-center border rounded-full overflow-hidden">
+                                    <a href="{% url 'decrement_cart_item' item.product.id %}" class="px-4 py-2 text-lg bg-gray-100 dark:bg-gray-900 hover:bg-gray-200 transition">-</a>
+                                    <span class="px-6">{{ item.quantity }}</span>
+                                    <a href="{% url 'add_to_cart' item.product.id %}" class="px-4 py-2 text-lg bg-gray-100 dark:bg-gray-900 hover:bg-gray-200 transition">+</a>
+                                </div>
+                            </div>
+                            <div class="col-span-2 text-center">${{ item.subtotal|floatformat:2 }}</div>
+                            <div class="col-span-12 text-right mt-3">
+                                <a href="{% url 'remove_from_cart' item.product.id %}" class="text-red-500 hover:underline">Eliminar</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="bg-white dark:bg-[#1E1E1E] rounded-3xl shadow p-8 flex flex-col gap-6">
+                    <div>
+                        <p class="text-sm text-gray-500 uppercase tracking-[0.2em]">Resumen</p>
+                        <div class="mt-4 flex items-center justify-between text-2xl font-semibold">
+                            <span>Total</span>
+                            <span>${{ cart.total|floatformat:2 }}</span>
+                        </div>
+                    </div>
+                    <a href="{% url 'checkout' %}" class="block text-center bg-[#6F4E37] text-white py-4 rounded-2xl hover:scale-105 transition">
+                        Finalizar compra
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            <div class="bg-white dark:bg-[#1E1E1E] rounded-3xl shadow p-12 text-center">
+                <h2 class="text-4xl font-bold">Tu carrito está vacío</h2>
+                <p class="text-gray-500 dark:text-gray-400 mt-4">Agrega productos al carrito para verlos aquí.</p>
+                <a href="{% url 'products' %}" class="inline-block mt-8 bg-[#6F4E37] text-white px-8 py-4 rounded-2xl hover:scale-105 transition">
+                    Ver productos
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}
