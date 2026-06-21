@@ -1,4 +1,4 @@
-<div
+content = '''<div
 class="bg-white dark:bg-[#1E1E1E] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-500 hover:-translate-y-2">
 
     <!-- IMAGE -->
@@ -68,4 +68,8 @@ class="bg-white dark:bg-[#1E1E1E] rounded-3xl overflow-hidden shadow-lg hover:sh
 
     </div>
 
-</div>
+</div>'''
+
+with open(r'c:\Users\herre\Desktop\WorkSpace\coffee_shop\templates\products\components\product_card.html', 'w', encoding='utf-8') as f:
+    f.write(content)
+print('Updated product_card.html')

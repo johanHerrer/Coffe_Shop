@@ -51,6 +51,7 @@ def login_view(request):
 
                 request.session['user_id'] = str(user.id)
                 request.session['user_name'] = user.full_name
+                request.session['user_role'] = user.role.name if user.role else 'user'
 
                 return redirect('home')
 

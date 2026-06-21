@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import CheckoutForm
 from .services import OrderService
 from .models import Order
+from apps.users.decorators import admin_required
 
 
 def checkout(request):
@@ -48,6 +49,7 @@ def order_detail(request, id):
         }
     )
 
+@admin_required
 def dashboard_orders(request):
     orders = Order.objects
 

@@ -35,11 +35,11 @@
 
                 {% if request.session.user_id %}
 
-                <a href="{% url 'dashboard' %}" class="hover:text-[#C4A484]">
-
-                    Dashboard
-
-                </a>
+                    {% if request.session.user_role == 'admin' %}
+                        <a href="{% url 'dashboard' %}" class="hover:text-[#C4A484]">
+                            Dashboard
+                        </a>
+                    {% endif %}
 
                 {% endif %}
 

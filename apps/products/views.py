@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import ProductForm
 from .services import ProductService
 from .models import Product
+from apps.users.decorators import admin_required
 
 def products_list(request):
 
@@ -23,6 +24,7 @@ def products_list(request):
         }
     )
 
+@admin_required
 def create_product(request):
 
     form = ProductForm()
@@ -51,6 +53,7 @@ def create_product(request):
         }
     )
 
+@admin_required
 def delete_product(request, product_id):
 
     product = Product.objects(

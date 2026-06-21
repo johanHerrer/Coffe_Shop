@@ -21,15 +21,15 @@
 
             </div>
 
-            <a
-            href="{% url 'create_product' %}"
-            class="bg-[#6F4E37] text-white px-6 py-4 rounded-2xl hover:scale-105 transition">
+            {% if request.session.user_role == 'admin' %}
+                <a
+                href="{% url 'create_product' %}"
+                class="bg-[#6F4E37] text-white px-6 py-4 rounded-2xl hover:scale-105 transition">
 
-                Nuevo Producto
+                    Nuevo Producto
 
-            </a>
-
-        </div>
+                </a>
+            {% endif %}
 
         <!-- SEARCH -->
         <form class="mb-10">
