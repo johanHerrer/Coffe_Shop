@@ -59,12 +59,7 @@ class Order(BaseDocument):
 
 
     def calculate_total(self):
-
         total = 0
-
         for item in self.items:
-
-            total += item.subtotal()
-
-
+            total += item.subtotal
         self.total = total

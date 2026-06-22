@@ -51,12 +51,5 @@ def order_detail(request, id):
 
 @admin_required
 def dashboard_orders(request):
-    orders = Order.objects
-
-    return render(
-        request,
-        "dashboard/orders.html",
-        {
-            "orders":orders
-        }
-    )
+    orders = Order.objects()
+    return render(request, "dashboard/orders.html", {"orders": orders})

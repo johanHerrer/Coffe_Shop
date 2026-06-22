@@ -1,28 +1,20 @@
 from django.shortcuts import render, redirect
+
 from .forms import ProductForm
 from .services import ProductService
 from .models import Product
 from apps.users.decorators import admin_required
 
 def products_list(request):
+    search_query = request.GET.get('search')
+    
+    if search_query:
+        products = Product.objects(name__icontains=search_query)
+    else:
+        products = Product.objects()
 
-    search = request.GET.get('search')
+    return render(request, 'products/list.html', {'products': products})
 
-    products = Product.objects
-
-    if search:
-
-        products = products.filter(
-            name__icontains=search
-        )
-
-    return render(
-        request,
-        'products/list.html',
-        {
-            'products': products
-        }
-    )
 
 @admin_required
 def create_product(request):
@@ -55,33 +47,12 @@ def create_product(request):
 
 @admin_required
 def delete_product(request, product_id):
-
-    product = Product.objects(
-        id=product_id
-    ).first()
-
+    product = Product.objects(id=product_id).first()
     if product:
-
         product.delete()
-
     return redirect('products')
 
+
 def dashboard_products(request):
-
-
-    products = Product.objects
-
-
-    return render(
-
-        request,
-
-        "dashboard/products.html",
-
-        {
-
-            "products":products
-
-        }
-
-    )
+    products = Product.objects()
+    return render(request, 'dashboard/products.html', {'products': products})

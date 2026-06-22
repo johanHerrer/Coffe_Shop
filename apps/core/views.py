@@ -11,37 +11,15 @@ def home(request):
     )
 
 def dashboard(request):
-
-
-    products = Product.objects.count()
-
-
-    orders = Order.objects.count()
-
-
-    sales = sum(
-
-        order.total
-
-        for order in Order.objects
-
-    )
-
-
+    products = Product.objects().count()
+    orders = Order.objects().count()
+    sales = sum(order.total for order in Order.objects())
     return render(
-
         request,
-
         "dashboard/index.html",
-
         {
-
-        "products":products,
-
-        "orders":orders,
-
-        "sales":sales
-
+            "products": products,
+            "orders": orders,
+            "sales": sales
         }
-
     )
