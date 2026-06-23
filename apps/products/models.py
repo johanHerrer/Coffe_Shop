@@ -53,7 +53,17 @@ class Product(BaseDocument):
 
     def save(self, *args, **kwargs):
 
-        self.slug = slugify(self.name)
+        base_slug = slugify(self.name)
+        slug = base_slug
+        count = 1
+
+        existing = Product.objects(slug=slug).first()
+        while existing and existing.id != self.id:
+            slug = f"{base_slug}-{count}"
+            count += 1
+            existing = Product.objects(slug=slug).first()
+
+        self.slug = slug
 
         return super().save(*args, **kwargs)
 

@@ -20,52 +20,92 @@
 
             {% csrf_token %}
 
-            <input
-            type="text"
-            name="name"
-            placeholder="Nombre"
-            class="w-full p-4 rounded-2xl border dark:bg-[#121212]">
+            {% if form.non_field_errors %}
+            <div class="bg-red-50 border border-red-200 text-red-700 rounded-2xl p-4">
+                {{ form.non_field_errors }}
+            </div>
+            {% endif %}
 
-            <textarea
-            name="description"
-            placeholder="Descripción"
-            class="w-full p-4 rounded-2xl border dark:bg-[#121212]"></textarea>
+            <div>
+                <label class="block mb-2 text-sm font-medium">Nombre</label>
+                <input
+                type="text"
+                name="name"
+                value="{{ form.name.value|default:'' }}"
+                placeholder="Nombre"
+                class="w-full p-4 rounded-2xl border dark:bg-[#121212]">
+                {% if form.name.errors %}
+                <p class="text-sm text-red-500 mt-2">{{ form.name.errors.0 }}</p>
+                {% endif %}
+            </div>
 
-            <input
-            type="number"
-            step="0.01"
-            name="price"
-            placeholder="Precio"
-            class="w-full p-4 rounded-2xl border dark:bg-[#121212]">
+            <div>
+                <label class="block mb-2 text-sm font-medium">Descripción</label>
+                <textarea
+                name="description"
+                placeholder="Descripción"
+                class="w-full p-4 rounded-2xl border dark:bg-[#121212]">{{ form.description.value|default:'' }}</textarea>
+                {% if form.description.errors %}
+                <p class="text-sm text-red-500 mt-2">{{ form.description.errors.0 }}</p>
+                {% endif %}
+            </div>
 
-            <input
-            type="number"
-            name="stock"
-            placeholder="Stock"
-            class="w-full p-4 rounded-2xl border dark:bg-[#121212]">
+            <div>
+                <label class="block mb-2 text-sm font-medium">Precio</label>
+                <input
+                type="number"
+                step="0.01"
+                name="price"
+                value="{{ form.price.value|default:'' }}"
+                placeholder="Precio"
+                class="w-full p-4 rounded-2xl border dark:bg-[#121212]">
+                {% if form.price.errors %}
+                <p class="text-sm text-red-500 mt-2">{{ form.price.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <div>
+                <label class="block mb-2 text-sm font-medium">Stock</label>
+                <input
+                type="number"
+                name="stock"
+                value="{{ form.stock.value|default:'' }}"
+                placeholder="Stock"
+                class="w-full p-4 rounded-2xl border dark:bg-[#121212]">
+                {% if form.stock.errors %}
+                <p class="text-sm text-red-500 mt-2">{{ form.stock.errors.0 }}</p>
+                {% endif %}
+            </div>
 
             <label class="flex items-center gap-4">
-
-                <input type="checkbox" name="is_on_demand">
-
+                <input type="checkbox" name="is_on_demand" {% if form.is_on_demand.value %}checked{% endif %}>
                 Producto bajo demanda (se prepara cuando se ordena)
-
             </label>
+            {% if form.is_on_demand.errors %}
+            <p class="text-sm text-red-500 mt-2">{{ form.is_on_demand.errors.0 }}</p>
+            {% endif %}
 
-            <input
-            type="file"
-            name="image"
-            class="w-full p-4 rounded-2xl border">
+            <div>
+                <label class="block mb-2 text-sm font-medium">Imagen</label>
+                <input
+                type="file"
+                name="image"
+                class="w-full p-4 rounded-2xl border">
+                {% if form.image.errors %}
+                <p class="text-sm text-red-500 mt-2">{{ form.image.errors.0 }}</p>
+                {% endif %}
+            </div>
 
             <label class="flex items-center gap-4">
-
-                <input type="checkbox" name="featured">
-
+                <input type="checkbox" name="featured" {% if form.featured.value %}checked{% endif %}>
                 Producto destacado
-
             </label>
+            {% if form.featured.errors %}
+            <p class="text-sm text-red-500 mt-2">{{ form.featured.errors.0 }}</p>
+            {% endif %}
 
             <button
+            type="submit"
             class="w-full bg-[#6F4E37] text-white py-5 rounded-2xl hover:scale-105 transition">
 
                 Guardar Producto
