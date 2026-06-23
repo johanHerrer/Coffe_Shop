@@ -13,7 +13,11 @@ def products_list(request):
     else:
         products = Product.objects()
 
-    return render(request, 'products/list.html', {'products': products})
+    template_name = 'products/list.html'
+    if request.headers.get('HX-Request') == 'true':
+        template_name = 'products/partials/product_grid.html'
+
+    return render(request, template_name, {'products': products})
 
 
 @admin_required
