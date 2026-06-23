@@ -26,6 +26,12 @@ urlpatterns = [
     path('auth/', include('apps.users.urls')),
     path('products/', include('apps.products.urls')),
     path('api/products/', include('apps.products.urls_api')),
+    path('api/cart/', include('apps.cart.urls_api')),
+    path('api/orders/', include('apps.orders.urls_api')),
+    path('api/users/', include('apps.users.urls_api')),
+    path('api/inventory/', include('apps.inventory.urls_api')),
+    path('api/core/', include('apps.core.urls_api')),
+    path('api/payments/', include('apps.payments.urls_api')),
     path('cart/', include('apps.cart.urls')),
     path('orders/', include('apps.orders.urls')),
 ]

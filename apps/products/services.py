@@ -46,6 +46,7 @@ class ProductService:
             price=data['price'],
             stock=data['stock'],
             featured=data.get('featured', False),
+            is_on_demand=data.get('is_on_demand', False),
             image=image_path
         )
 

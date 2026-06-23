@@ -19,3 +19,8 @@ class ProductForm(forms.Form):
     featured = forms.BooleanField(
         required=False
     )
+
+    is_on_demand = forms.BooleanField(
+        required=False,
+        label="Producto bajo demanda (se prepara cuando se ordena)"
+    )

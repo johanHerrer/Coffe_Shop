@@ -53,6 +53,10 @@ def login_view(request):
                 request.session['user_name'] = user.full_name
                 request.session['user_role'] = user.role.name if user.role else 'user'
 
+                # Redirect admin directly to dashboard
+                if user.role and user.role.name == 'admin':
+                    return redirect('dashboard')
+
                 return redirect('home')
 
     return render(

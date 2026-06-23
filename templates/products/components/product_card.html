@@ -23,12 +23,22 @@
         <div
             class="mt-4 md:mt-6 pt-4 border-t border-gray-100 dark:border-gray-700 flex flex-col md:flex-row items-center md:justify-between gap-3">
 
-            <span class="text-xs md:text-sm text-gray-500">Stock: {{ product.stock }}</span>
+            {% if product.is_on_demand %}
+                <span class="text-xs md:text-sm text-blue-600 dark:text-blue-400 font-semibold">Bajo demanda</span>
+            {% else %}
+                <span class="text-xs md:text-sm text-gray-500">Stock: {{ product.stock }}</span>
+            {% endif %}
 
             <div class="flex w-full md:w-auto gap-2">
-                <button hx-post="{% url 'add_to_cart' product.id %}" hx-target="#cart-count" hx-swap="innerHTML" class="bg-[#6F4E37] text-white px-4 py-2 rounded-xl">
-                    Agregar
-                </button>
+                {% if product.is_on_demand or product.stock > 0 %}
+                    <button hx-post="{% url 'add_to_cart' product.id %}" hx-target="#cart-count" hx-swap="innerHTML" class="bg-[#6F4E37] text-white px-4 py-2 rounded-xl hover:scale-105 transition">
+                        Agregar
+                    </button>
+                {% else %}
+                    <button disabled class="bg-gray-400 text-gray-700 px-4 py-2 rounded-xl cursor-not-allowed">
+                        Sin stock
+                    </button>
+                {% endif %}
 
                 {% if request.session.user_role == 'admin' %}
                 <a href="{% url 'delete_product' product.id %}"

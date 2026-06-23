@@ -15,10 +15,17 @@ class CartService:
         if not product:
             return cart
 
+        # Validate stock for non-on-demand products
+        if not product.is_on_demand and product.stock <= 0:
+            return cart  # Cannot add product without stock
+
         found = False
 
         for item in cart.items:
             if str(item.product.id) == str(product.id):
+                # For non-on-demand products, check if adding would exceed stock
+                if not product.is_on_demand and (item.quantity + 1) > product.stock:
+                    return cart  # Cannot exceed available stock
                 item.quantity += 1
                 found = True
                 break

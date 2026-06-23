@@ -43,6 +43,8 @@ class Product(BaseDocument):
 
     featured = BooleanField(default=False)
 
+    is_on_demand = BooleanField(default=False)  # True: created on demand | False: managed inventory
+
     category = ReferenceField(Category)
 
     meta = {
