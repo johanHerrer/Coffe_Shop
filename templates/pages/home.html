@@ -46,21 +46,15 @@ class="min-h-screen flex items-center justify-center relative overflow-hidden">
 
             </p>
 
-            <div class="flex gap-4 mt-10">
+            <div class="flex flex-col sm:flex-row gap-4 mt-10">
 
-                <button
-                class="bg-[#6F4E37] hover:bg-[#5d3f2c] text-white px-8 py-4 rounded-2xl transition duration-300 shadow-lg hover:scale-105">
-
+                <a href="{% url 'products' %}" class="inline-flex items-center justify-center bg-[#6F4E37] hover:bg-[#5d3f2c] text-white px-8 py-4 rounded-2xl transition duration-300 shadow-lg hover:scale-105">
                     Ordenar Ahora
+                </a>
 
-                </button>
-
-                <button
-                class="border border-[#6F4E37] px-8 py-4 rounded-2xl hover:bg-[#6F4E37] hover:text-white transition duration-300">
-
+                <a href="{% url 'products' %}" class="inline-flex items-center justify-center border border-[#6F4E37] px-8 py-4 rounded-2xl hover:bg-[#6F4E37] hover:text-white transition duration-300">
                     Ver Menú
-
-                </button>
+                </a>
 
             </div>
 

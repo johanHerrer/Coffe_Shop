@@ -21,9 +21,9 @@
                     Productos
                 </a>
 
-                <a href="{% url 'cart' %}" class="hover:text-[#C4A484] transition duration-300">
+                <a href="{% url 'cart' %}" class="hover:text-[#C4A484] transition duration-300 inline-flex items-center gap-2">
                     Carrito
-                    <span id="cart-count" class="ml-1 bg-[#6F4E37] text-white px-2 py-1 rounded-full text-xs">
+                    <span id="cart-count" class="bg-[#6F4E37] text-white px-2 py-1 rounded-full text-xs">
                         {% if request.session.cart %}
                             {{ request.session.cart|length }}
                         {% else %}
@@ -31,8 +31,6 @@
                         {% endif %}
                     </span>
                 </a>
-                </a>
-
 
                 <a href="#" class="hover:text-[#C4A484] transition duration-300">
                     Nosotros

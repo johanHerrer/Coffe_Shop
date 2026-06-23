@@ -8,39 +8,21 @@
 
 </h1>
 
-<div class="
-grid
-md:grid-cols-3
-gap-8
-">
-
-    {% for product in products %}
-
-    <div class="bg-white dark:bg-[#1E1E1E] rounded-3xl p-6 shadow">
-
-        <h2 class="text-2xl font-bold">
-
-            {{product.name}}
-
-        </h2>
-
-        <p>
-
-            Stock:
-
-            {{product.stock}}
-
-        </p>
-
-        <p class="mt-3">
-
-            ${{product.price}}
-
-        </p>
-    </div>
-
-    {% endfor %}
-
+<div class="grid md:grid-cols-3 gap-8">
+    {% if products %}
+        {% for product in products %}
+            <div class="bg-white dark:bg-[#1E1E1E] rounded-3xl p-6 shadow transition hover:-translate-y-1 duration-300">
+                <h2 class="text-2xl font-bold mb-3">{{ product.name }}</h2>
+                <p class="text-gray-500 mb-2">Stock: {{ product.stock }}</p>
+                <p class="text-lg font-semibold">${{ product.price|floatformat:2 }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="col-span-full bg-white dark:bg-[#1E1E1E] rounded-3xl p-10 shadow text-center">
+            <h2 class="text-2xl font-semibold mb-3">No hay productos registrados</h2>
+            <p class="text-gray-500">Agrega productos desde la sección de administración.</p>
+        </div>
+    {% endif %}
 </div>
 
 {% endblock %}
